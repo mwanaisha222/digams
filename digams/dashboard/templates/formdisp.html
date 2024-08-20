@@ -1,0 +1,29 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'form.css' %}">
+    <title>AMR Dashboard</title>
+</head>
+<body>
+    <h1>AMR Dashboard</h1>
+    
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Submit</button>
+    </form>
+
+    {% if line_chart %}
+        <h2>Resistance Trends</h2>
+        <div>{{ line_chart|safe }}</div>
+    {% endif %}
+
+    {% if bar_chart %}
+        <h2>Susceptibility</h2>
+        <div>{{ bar_chart|safe }}</div>
+    {% endif %}
+</body>
+</html>
